@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_hotel_root" name="Hotel"/>
+        <menuitem id="menu_reservacion" name="Reservación" parent="menu_hotel_root" sequence="10"/>
+    </data>
+</odoo>

@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+
+    <record id="view_rt_habitacion_tree" model="ir.ui.view">
+      <field name="name">view.rt.habitacion.tree</field>
+      <field name="model">rt.habitacion</field>
+      <field name="arch" type="xml">
+        <tree string="Habitación">
+          <field name="name" />
+          <field name="nro" optional="True" />
+          <field name="tipo" />
+          <field name="capacidad" />
+          <field name="esta_limpio" widget="boolean_toggle" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_rt_habitacion_form" model="ir.ui.view">
+      <field name="name">view.rt.habitacion.form</field>
+      <field name="model">rt.habitacion</field>
+      <field name="arch" type="xml">
+        <form string="Habitación">
+          <sheet>
+            <group>
+              <group string="Opciones Básicas">
+                <field name="name" />
+                <field name="nro" />
+              </group>
+              <group>
+                <field name="tipo" />
+                <field name="capacidad" />
+                <field name="esta_limpio" widget="boolean_toggle" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_habitacion" model="ir.actions.act_window">
+      <field name="type">ir.actions.act_window</field>
+      <field name="name">Habitacion</field>
+      <field name="res_model">rt.habitacion</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[]</field>
+      <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_habitacion" name="Habitación" action="action_habitacion" parent="menu_reservacion" sequence="11"/>
+
+  </data>
+</odoo>

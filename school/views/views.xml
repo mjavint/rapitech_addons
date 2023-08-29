@@ -1,0 +1,107 @@
+<odoo>
+  <data>
+
+    <record id="school_view_form" model="ir.ui.view">
+      <field name="name">school.view.form</field>
+      <field name="model">school</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group name="basic" string="Basic">
+              <group>
+                <field name="name" />
+                <field name="activado" />
+              </group>
+              <group>
+                <field name="value" />
+                <field name="value2" />
+              </group>
+            </group>
+            <group name="advanced" string="Advanced">
+              <group>
+                <field name="hoy" />
+                <field name="archivo" />
+                <field name="value3" />
+                <field name="description" />
+              </group>
+              <group>
+                <field name="hoy_hora" />
+                <field name="image" />
+                <field name="name_related" />
+                <field name="seleccioname" />
+              </group>
+            </group>
+            <group name="relation" string="Relation">
+              <field name="partner_id" />
+            </group>
+            <notebook>
+              <page name="user" string="Users">
+                <field name="usuario_ids">
+                  <tree>
+                    <field name="name" />
+                    <field name="login" />
+                    <field name="company_id" />
+                  </tree>
+                </field>
+              </page>
+              <page name="company" string="Company">
+                <field name="company_ids">
+                  <tree editable="top">
+                    <field name="name" />
+                    <field name="currency_id" />
+                    <field name="phone" />
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="school.list">
+      <field name="name">school list</field>
+      <field name="model">school</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="school.action_window">
+      <field name="name">school window</field>
+      <field name="res_model">school</field>
+      <field name="view_mode">tree,form,kanban,pivot</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="school.action_server">
+      <field name="name">school server</field>
+      <field name="model_id" ref="model_school"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <!-- actions -->
+    <menuitem name="List" id="school.menu_1_list" parent="school.menu_1" action="school.action_window"/>
+    <menuitem name="Server to list" id="school" parent="school.menu_2" action="school.action_server"/>
+
+  </data>
+</odoo>
